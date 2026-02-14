@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+}
+
+@layer utilities {
+  @keyframes pulse-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .animate-pulse-badge {
+    animation: pulse-badge 1.5s ease-in-out infinite;
+  }
+
+  @keyframes arrival-pulse {
+    0% {
+      transform: translateY(-50%) translateX(-50%) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-50%) translateX(-50%) scale(1.6);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-50%) translateX(-50%) scale(1);
+      opacity: 1;
+    }
+  }
+  .animate-arrival-pulse {
+    animation: arrival-pulse 1.2s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-arrival-pulse,
+    .animate-pulse-badge {
+      animation: none;
+    }
+  }
+}
