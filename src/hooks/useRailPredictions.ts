@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchRailPredictions } from '../api/endpoints';
-import { REFETCH_INTERVAL } from '../lib/constants';
+import { fetchRailPredictions } from '@/api/endpoints';
+import { REFETCH_INTERVAL } from '@/lib/constants';
 
 export function useRailPredictions(stationCodes: string) {
   return useQuery({

@@ -7,9 +7,9 @@ export default function EmptyState({
 }) {
   return (
     <div className="text-center py-12">
-      <p className="text-gray-500 font-medium">{title}</p>
+      <p className="text-muted-foreground font-medium">{title}</p>
       {description && (
-        <p className="mt-1 text-sm text-gray-400">{description}</p>
+        <p className="mt-1 text-sm text-muted-foreground/70">{description}</p>
       )}
     </div>
   );

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" width="400" height="80">
+  <defs>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22C55E"/>
+      <stop offset="100%" style="stop-color:#16A34A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Combined wordmark -->
+  <text
+    x="0" y="58"
+    font-family="'Helvetica Neue', 'Arial', sans-serif"
+    font-size="62"
+    letter-spacing="-1">
+    <tspan font-weight="300" fill="#1A1A1A">trip</tspan><tspan font-weight="700" fill="url(#greenGrad)">helper</tspan>
+  </text>
+
+  <!-- Dot accent -->
+  <circle cx="282" cy="12" r="7" fill="#22C55E"/>
+</svg>

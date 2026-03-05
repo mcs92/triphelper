@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import { useStations } from '../../hooks/useStations';
-import StopCard from './StopCard';
-import LoadingSpinner from '../common/LoadingSpinner';
-import ErrorMessage from '../common/ErrorMessage';
-import EmptyState from '../common/EmptyState';
+import { useStations } from '@/hooks/useStations';
+import StopCard from '@/components/search/StopCard';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
+import ErrorMessage from '@/components/common/ErrorMessage';
+import EmptyState from '@/components/common/EmptyState';
 
 interface StationListProps {
   searchQuery: string;

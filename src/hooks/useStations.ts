@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchStations } from '../api/endpoints';
-import { STALE_TIME_24H } from '../lib/constants';
+import { fetchStations } from '@/api/endpoints';
+import { STALE_TIME_24H } from '@/lib/constants';
 
 export function useStations() {
   return useQuery({

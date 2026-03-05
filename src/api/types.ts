@@ -67,10 +67,51 @@ export interface BusPredictionsResponse {
   StopName: string;
 }
 
+// Capital Bikeshare (GBFS)
+export interface BikeStation {
+  station_id: string;
+  name: string;
+  short_name: string;
+  lat: number;
+  lon: number;
+  capacity: number;
+  has_kiosk: boolean;
+  region_id: string;
+}
+
+export interface BikeStationInfoResponse {
+  data: { stations: BikeStation[] };
+  last_updated: number;
+  ttl: number;
+}
+
+export interface BikeStationStatus {
+  station_id: string;
+  num_bikes_available: number;
+  num_ebikes_available: number;
+  num_docks_available: number;
+  num_bikes_disabled: number;
+  num_docks_disabled: number;
+  is_installed: number;
+  is_renting: number;
+  is_returning: number;
+  last_reported: number;
+}
+
+export interface BikeStationStatusResponse {
+  data: { stations: BikeStationStatus[] };
+  last_updated: number;
+  ttl: number;
+}
+
+export interface BikeDock extends BikeStation {
+  status: BikeStationStatus | null;
+}
+
 // App-specific types
 export interface FavoriteStop {
   id: string;
-  type: 'rail' | 'bus';
+  type: 'rail' | 'bus' | 'bike';
   name: string;
   meta: {
     lines?: string[];

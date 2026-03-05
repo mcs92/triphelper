@@ -1,10 +1,24 @@
 import { useState } from 'react';
-import SearchInput from '../components/search/SearchInput';
-import StationList from '../components/search/StationList';
-import BusStopList from '../components/search/BusStopList';
-import { useDebounce } from '../hooks/useDebounce';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import SearchInput from '@/components/search/SearchInput';
+import StationList from '@/components/search/StationList';
+import BusStopList from '@/components/search/BusStopList';
+import BikeDockList from '@/components/search/BikeDockList';
+import { useDebounce } from '@/hooks/useDebounce';
 
-type Tab = 'rail' | 'bus';
+type Tab = 'rail' | 'bus' | 'bike';
+
+const tabLabels: Record<Tab, string> = {
+  rail: 'Metro',
+  bus: 'Bus',
+  bike: 'Bike',
+};
+
+const placeholders: Record<Tab, string> = {
+  rail: 'Search Metro stations...',
+  bus: 'Search bus stops...',
+  bike: 'Search bike docks...',
+};
 
 export default function SearchPage() {
   const [tab, setTab] = useState<Tab>('rail');
@@ -13,36 +27,37 @@ export default function SearchPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex gap-1 bg-gray-100 rounded-lg p-1">
-        {(['rail', 'bus'] as const).map((t) => (
-          <button
-            key={t}
-            onClick={() => {
-              setTab(t);
-              setQuery('');
-            }}
-            className={`flex-1 py-2 text-sm font-medium rounded-md transition-colors ${
-              tab === t
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-500 hover:text-gray-700'
-            }`}
-          >
-            {t === 'rail' ? 'Metro' : 'Bus'}
-          </button>
-        ))}
-      </div>
+      <Tabs
+        value={tab}
+        onValueChange={(v) => {
+          setTab(v as Tab);
+          setQuery('');
+        }}
+      >
+        <TabsList>
+          {(['rail', 'bus', 'bike'] as const).map((t) => (
+            <TabsTrigger key={t} value={t}>
+              {tabLabels[t]}
+            </TabsTrigger>
+          ))}
+        </TabsList>
 
-      <SearchInput
-        value={query}
-        onChange={setQuery}
-        placeholder={tab === 'rail' ? 'Search Metro stations...' : 'Search bus stops...'}
-      />
+        <SearchInput
+          value={query}
+          onChange={setQuery}
+          placeholder={placeholders[tab]}
+        />
 
-      {tab === 'rail' ? (
-        <StationList searchQuery={debouncedQuery} />
-      ) : (
-        <BusStopList searchQuery={debouncedQuery} />
-      )}
+        <TabsContent value="rail">
+          <StationList searchQuery={debouncedQuery} />
+        </TabsContent>
+        <TabsContent value="bus">
+          <BusStopList searchQuery={debouncedQuery} />
+        </TabsContent>
+        <TabsContent value="bike">
+          <BikeDockList searchQuery={debouncedQuery} />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

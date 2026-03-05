@@ -1,8 +1,9 @@
-import { useBusPredictions } from '../../hooks/useBusPredictions';
-import PredictionRow from './PredictionRow';
-import LoadingSpinner from '../common/LoadingSpinner';
-import ErrorMessage from '../common/ErrorMessage';
-import EmptyState from '../common/EmptyState';
+import { useBusPredictions } from '@/hooks/useBusPredictions';
+import { Card, CardContent } from '@/components/ui/card';
+import PredictionRow from '@/components/predictions/PredictionRow';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
+import ErrorMessage from '@/components/common/ErrorMessage';
+import EmptyState from '@/components/common/EmptyState';
 
 interface BusPredictionsProps {
   stopId: string;
@@ -19,18 +20,20 @@ export default function BusPredictions({ stopId }: BusPredictionsProps) {
 
   return (
     <div>
-      <div className="bg-white rounded-lg border border-gray-200 px-3 divide-y divide-gray-100">
-        {predictions.map((pred, i) => (
-          <PredictionRow
-            key={`${pred.RouteID}-${pred.VehicleID}-${i}`}
-            route={pred.RouteID}
-            destination={pred.DirectionText}
-            minutes={String(pred.Minutes)}
-          />
-        ))}
-      </div>
+      <Card className="gap-0 py-0">
+        <CardContent className="px-3 py-0 divide-y divide-border">
+          {predictions.map((pred, i) => (
+            <PredictionRow
+              key={`${pred.RouteID}-${pred.VehicleID}-${i}`}
+              route={pred.RouteID}
+              destination={pred.DirectionText}
+              minutes={String(pred.Minutes)}
+            />
+          ))}
+        </CardContent>
+      </Card>
       {dataUpdatedAt > 0 && (
-        <p className="text-[11px] text-gray-400 mt-2 text-center">
+        <p className="text-[11px] text-muted-foreground mt-2 text-center">
           Updated {new Date(dataUpdatedAt).toLocaleTimeString()} — refreshes every 15s
         </p>
       )}

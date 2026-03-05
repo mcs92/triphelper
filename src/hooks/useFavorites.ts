@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import type { FavoriteStop } from '../api/types';
+import type { FavoriteStop } from '@/api/types';
 
 const STORAGE_KEY = 'dc-transit-favorites';
 
@@ -64,8 +64,9 @@ export function useFavorites() {
   }, []);
 
   const toShareURL = useCallback(() => {
+    const prefixMap = { rail: 'r', bus: 'b', bike: 'k' } as const;
     const encoded = favorites
-      .map((f) => (f.type === 'rail' ? `r:${f.id}` : `b:${f.id}`))
+      .map((f) => `${prefixMap[f.type]}:${f.id}`)
       .join(',');
     return `${window.location.origin}/favorites?stops=${encoded}`;
   }, [favorites]);

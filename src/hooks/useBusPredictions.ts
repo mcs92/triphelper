@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchBusPredictions } from '../api/endpoints';
-import { REFETCH_INTERVAL } from '../lib/constants';
+import { fetchBusPredictions } from '@/api/endpoints';
+import { REFETCH_INTERVAL } from '@/lib/constants';
 
 export function useBusPredictions(stopId: string) {
   return useQuery({

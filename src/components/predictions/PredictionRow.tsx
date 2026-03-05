@@ -1,6 +1,7 @@
-import CountdownBadge from './CountdownBadge';
-import ArrivalProgress from './ArrivalProgress';
-import { LINE_COLORS } from '../../lib/constants';
+import { Badge } from '@/components/ui/badge';
+import CountdownBadge from '@/components/predictions/CountdownBadge';
+import ArrivalProgress from '@/components/predictions/ArrivalProgress';
+import { LINE_COLORS } from '@/lib/constants';
 
 interface PredictionRowProps {
   line?: string;
@@ -14,7 +15,7 @@ export default function PredictionRow({ line, route, destination, minutes, compa
   const trackColor = line ? (LINE_COLORS[line] || '#666') : '#009CDE';
 
   return (
-    <div className="py-2.5 border-b border-gray-100 last:border-b-0">
+    <div className="py-2.5">
       <div className="flex items-center gap-3">
         {line && (
           <span
@@ -25,11 +26,11 @@ export default function PredictionRow({ line, route, destination, minutes, compa
           </span>
         )}
         {route && (
-          <span className="inline-flex items-center px-2 py-0.5 rounded bg-blue-100 text-xs font-semibold text-blue-700 shrink-0">
+          <Badge variant="secondary" className="shrink-0">
             {route}
-          </span>
+          </Badge>
         )}
-        <span className="flex-1 text-sm text-gray-700 truncate">{destination}</span>
+        <span className="flex-1 text-sm text-muted-foreground truncate">{destination}</span>
         <CountdownBadge value={minutes} />
       </div>
       {!compact && (

@@ -1,3 +1,6 @@
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+
 interface CountdownBadgeProps {
   value: string; // "ARR", "BRD", "---", or numeric string
 }
@@ -8,23 +11,28 @@ export default function CountdownBadge({ value }: CountdownBadgeProps) {
 
   if (isUnknown) {
     return (
-      <span className="inline-flex items-center justify-center min-w-[3rem] px-2 py-1 rounded-md bg-gray-100 text-xs font-medium text-gray-400">
+      <Badge variant="secondary" className="min-w-[3rem] justify-center text-muted-foreground">
         ---
-      </span>
+      </Badge>
     );
   }
 
   if (isArriving) {
     return (
-      <span className="inline-flex items-center justify-center min-w-[3rem] px-2 py-1 rounded-md bg-green-100 text-xs font-bold text-green-700 animate-pulse-badge">
+      <Badge
+        className={cn(
+          "min-w-[3rem] justify-center border-transparent bg-green-100 text-green-700 font-bold animate-pulse-badge",
+          "hover:bg-green-100"
+        )}
+      >
         {value}
-      </span>
+      </Badge>
     );
   }
 
   return (
-    <span className="inline-flex items-center justify-center min-w-[3rem] px-2 py-1 rounded-md bg-gray-900 text-xs font-bold text-white">
+    <Badge className="min-w-[3rem] justify-center font-bold">
       {value} min
-    </span>
+    </Badge>
   );
 }

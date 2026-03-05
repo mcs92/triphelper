@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import { useBusStops } from '../../hooks/useBusStops';
-import { MAX_BUS_RESULTS } from '../../lib/constants';
-import StopCard from './StopCard';
-import LoadingSpinner from '../common/LoadingSpinner';
-import ErrorMessage from '../common/ErrorMessage';
-import EmptyState from '../common/EmptyState';
+import { useBusStops } from '@/hooks/useBusStops';
+import { MAX_BUS_RESULTS } from '@/lib/constants';
+import StopCard from '@/components/search/StopCard';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
+import ErrorMessage from '@/components/common/ErrorMessage';
+import EmptyState from '@/components/common/EmptyState';
 
 interface BusStopListProps {
   searchQuery: string;
@@ -28,7 +28,7 @@ export default function BusStopList({ searchQuery }: BusStopListProps) {
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="text-xs text-gray-400">
+      <p className="text-xs text-muted-foreground">
         {filtered.length >= MAX_BUS_RESULTS
           ? `Showing first ${MAX_BUS_RESULTS} results — try a more specific search`
           : `${filtered.length} result${filtered.length === 1 ? '' : 's'}`}

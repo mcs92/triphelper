@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
-import { useFavorites } from '../hooks/useFavorites';
-import type { FavoriteStop } from '../api/types';
+import { useFavorites } from '@/hooks/useFavorites';
+import type { FavoriteStop } from '@/api/types';
 
 interface FavoritesContextValue {
   favorites: FavoriteStop[];
